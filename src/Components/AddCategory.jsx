@@ -14,7 +14,7 @@ function AddCategory({ setCategories }) {
     event.preventDefault();
 
     if ( inputValue.trim().length > 2 ) {
-      setCategories( category => [...category, inputValue]);
+      setCategories( category => [inputValue, ...category]);
       setInputValue('');
     }
 
