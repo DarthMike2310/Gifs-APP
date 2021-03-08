@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import GifGridItem from './GifGridItem';
 
 function GifGrid({category}) {
 
-  const [count, setCount] = useState(0);
+  const [images, setImages] = useState([]);
 
   useEffect( () => {
     getGifs();
@@ -23,15 +24,22 @@ function GifGrid({category}) {
     });
 
     console.log(gifs);
+    setImages(gifs);
 
   };
 
   return (
-    <div>
+    <>
       <h3>{category}</h3>
-      <h3>{count}</h3>
-      <button onClick={ () => setCount(count + 1)}>Agregar</button>
-    </div>
+      {
+        images.map( img => (
+          <GifGridItem
+            key={img.id}
+            {...img}
+          />
+        ))
+      }
+    </>
   )
 }
 
